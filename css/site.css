@@ -1,0 +1,3 @@
+.validation-form-style input.ng-invalid.ng-dirty {
+	background-color:#FF0000;
+}

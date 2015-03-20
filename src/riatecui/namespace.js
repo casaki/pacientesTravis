@@ -1,0 +1,1 @@
+var riatecui = angular.module('riatecui',[]);

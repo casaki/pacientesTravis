@@ -1,0 +1,162 @@
+<script type="text/ng-template" id="error-messages">
+  <div ng-message="required">Campo obligatorio</div>
+  <div ng-message="minlength">Longitud minima no alcanzada</div>
+  <div ng-message="pattern">campo invalido</div>
+  <div ng-message="dni">El dni no es valido</div>
+
+ 
+</script>
+
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Nuevo Paciente</h2>  
+  </div>  
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+    
+    <form role="form" id="patientForm" name="patientForm" class="validation-form-style">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label for="name">Nombre:</label>
+          <input type="text"
+          ng-required="true"
+          ng-minLength="20"
+          class="form-control" 
+          id="name"
+          name="name"
+          ng-model="patient.name"
+          />
+
+          <div class="row" style="color:maroon">
+            <div ng-messages="patientForm.name.$error" ng-show="isNameFilled()" ng-messages-include="error-messages">
+            </div>  
+          </div> 
+
+        </div>
+      </div>    
+
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="firstname">Primer Apellido:</label>
+          <input type="text" 
+          ng-required="true" 
+          class="form-control"
+          id="firstname"
+          ng-model="patient.lastname"
+          />
+        </div>
+      </div>    
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="lastname">Segundo Apellido:</label>
+          <input type="text"
+          ng-required="true" 
+          class="form-control" 
+          id="lastname"
+          ng-model="patient.lastname2"
+          />
+        </div>
+      </div>    
+
+      <div class="col-xs-3">
+        <div class="form-group">
+          <label for="firstname">Sexo:</label>
+          <ul class="list-unstyled lust-inline">
+          	<li ng-repeat="gender in genders">
+          		<input type="radio" ng-model="patient.gender" value={{gender.id}}><span>{{gender.name}}</span>
+          	</li>
+          </ul>	
+        </div>
+      </div>    
+
+      <div class="col-xs-3">
+        <div class="form-group">
+          <label for="dni">DNI:</label>
+          <input type="text"
+           ng-required="true"
+           class="form-control"
+           id="dni"
+           name="dni"
+           rc-dni=""
+           ng-model="patient.dni"
+           />
+           <div class="row" style="color:maroon">
+            <div ng-messages="patientForm.dni.$error" ng-show="isDniFilled()" ng-messages-include="error-messages">
+              <div ng-message="pattern">El dni debe tener 8 numeros y una letra</div>
+            </div>  
+           </div> 
+
+        </div>
+      </div>
+
+       <div class="col-sm-3">
+              <div class="form-group">                
+                <label for="nssb">fecha Nacimiento </label>                
+                <input ng-model="patient.birthdate" 
+                 type="text" 
+                 id="dueData" 
+                 class="form-control"
+                 name="DueData" 
+                 datepicker-popup="dd-MMMM-yyyy"
+                 datepicker-append-to-body="true"
+                 is-open="data.isOpen" ng-click="data.isOpen = true"
+                 close-text="Cerrar"
+                /> 
+            </div>
+         </div>
+
+        <div class="col-xs-3">
+        <div class="form-group">
+          <label for="firstname">Estado Civil:</label>
+          <select id="maritalstatus"
+          class="form-control"
+          ng-model="patient.maritalStatus"
+          ng-options="maritalstatus.id as maritalstatus.name for maritalstatus in maritalStatuses"  
+
+          >
+         </select>
+        </div>
+      </div> 
+
+      <div class="col-xs-3">
+        <div class="form-group">
+          <label for="firstname">Hospital:</label>
+        		 <input type="text" 
+                 name="hospital" 
+                 class="form-control"
+                 ng-model="patient.hospital"
+                 typeahead="hospital as hospital.name for hospital in hospitals | filter:$viewValue | limitTo:8"
+                 typeahead-editable="false"
+                 id="hospital"
+               
+                /> 
+        </div>
+      </div>     
+         
+     
+        <div class="col-xs-3">
+        <div class="form-group">
+            <button class="form-control" ng-disabled="patientForm.$pristine || patientForm.$invalid" ng-click="consoleDebugPatientCommand()">Save</button>
+
+        </div>
+        </div>      
+
+     </form>   
+
+
+
+    
+
+   </div>
+</div>
+
+
+
+
+<!--
+<div>
+	<h2>Ventana de paciente... coming soon</h2>
+	<h3>Patient id: {{patientId}}</h3>
+</div>-->
