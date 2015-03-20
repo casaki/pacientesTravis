@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "grunt"
+    "test": "./node_modules/grunt/bin/grunt.js"
   },
   "author": "",
   "license": "ISC",
