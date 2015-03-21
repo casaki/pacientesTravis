@@ -13,7 +13,7 @@ module.exports = function(grunt){
 				options: {
 					hostname: 'localhost',
 					port: 8080,
-					keepalive:true,
+					//keepalive:true,
 					middleware: function(connect){
 						return [proxySnippet];
 					},
